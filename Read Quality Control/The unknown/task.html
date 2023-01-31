@@ -1,0 +1,36 @@
+<h5 id="description">Description</h5>
+<p>Repeats aren't the only problem with our sequencer. Sometimes the sequencer cannot identify a nucleotide and decipher it correctly. In this case, we will see the <code class="java">N</code> letter (compare it with the traditional nucleotides <code class="java">A</code>, <code class="java">T</code>, <code class="java">C</code>, or <code class="java">G</code>). Here, <code class="java">N</code> stands for an <strong>undefined nucleotide</strong>. The number of such nucleotides varies, depending on the quality of the original DNA and the sequencing type. When you encounter read sequences with a lot of <code class="java">N</code>s, consider these reads to be of a low quality.</p>
+<h5 id="objectives">Objectives</h5>
+<p>You have a FASTQ file with a set of reads. All these reads are of the same length.</p>
+<ul>
+<li>Take the input path to the FASTQ file with data;</li>
+<li>Calculate the percentage of the undefined nucleotides ( <code class="java">N</code> ) per sequence, the number of such reads, and the average Ns percentage per read sequence for all reads. Round the Ns% per sequence value to two decimal places.</li>
+</ul>
+<p>The formula to count Ns% per sequence is</p>
+<p><span class="math-tex">\[\text{Ns} \% \text { per sequence} = \frac{\text {number of Ns}}{\text {length of sequence}} * 100\%\]</span></p>
+<p>To check your code, you can use test files <a href="https://stepik.org/media/attachments/lesson/608059/test1.fastq" rel="noopener noreferrer nofollow" target="_blank">test1.fastq</a> and <a href="https://stepik.org/media/attachments/lesson/608059/test2.fastq" rel="noopener noreferrer nofollow" target="_blank">test2.fastq</a>.</p>
+<h5 id="example">Example</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>contents of test.fastq </em></p>
+<pre><code class="language-no-highlight">@SRR1234567.1 length=101
+GGTTGCAGATTCGCAGTGTCGCTGTTCCAGCGCATCACATCTTTGATGTTCACGCCGTGGCGTTTAGCAATGCTTGAAAGCGAATCGCCTTTGCCCACACG
++
+@?:=:;DBFADH;CAECEE@@E:FFHGAE4?C?DE&lt;BFGEC&gt;?&gt;FHE4BFFIIFHIBABEECA83;&gt;&gt;@&gt;@CCCDC9@@CC08&lt;@@BB@9:CC#######
+@SRR1234567.4 length=101
+GTATGAGGTTTTGCTGCATTCTCTGNGCGAATATTAACTCCNTNNNNNTTATAGTTCAAAGCAAGTACCTGTCTCTTATACACATCTCCGAGCCCACGAGC
++
+@@&lt;?=D?D==?&lt;AFGDF+AIHEACH#22&lt;:?E8??:9??GG#0#####000;CF=C)4.==CA@@@)=7?C7?E37;3@&gt;;(.;&gt;AB#############
+@SRR1234567.10 length=101
+GCTTCTCTTAACTGAGGTCACCATCATGCCGTTAAGTCCCTACCTCTCTTTTGCCGGTAACTGTTCCGCCGCGATTGCCTTTTATCTGTCTCTTATACACC
++
+??&lt;DBD;4C2=&lt;BB&gt;:AC;&lt;CF&lt;CE@FE9@E1C@891CD*9:?:3D@DD4D&lt;DD:0;@A=AEIDDA##################################</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test.fastq
+Reads in the file = 3
+Reads sequence average length = 101
+
+Repeats = 0
+Reads with Ns = 1
+
+GC content average = 47.52%
+Ns per read sequence = 2.31%</code></pre>

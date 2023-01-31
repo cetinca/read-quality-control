@@ -1,0 +1,80 @@
+<h5 id="description">Description</h5>
+<p>The sequencer has imperfections. Sometimes, it can sequence the same part twice or even more. As a result, a FASTQ file may contain several reads with the same nucleotide order. Of course, it makes it harder to assemble a puzzle when you have identical details. In this light, it is necessary to catch the repeated reads to clear the data for further processing.</p>
+<p>Repeated reads can appear as a result of the bacterial natural repeat sequencing, but for the sake of simplicity, we do not take this feature into account.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Download the file <a href="https://www.dropbox.com/s/o1i5ssuv1uvtqhx/SRR16506265_1.fastq?dl=0" rel="noopener noreferrer nofollow" target="_blank">here</a>;</li>
+<li>Place it in your working directory;</li>
+<li>In your code, input path to the FASTQ file;</li>
+<li>Find all repeated reads* in this file and print their total number.<br/>
+	* Repeats are the extra reads. For example, if the sequence of the same read occurs three times in the file, then the number of repeats is two.</li>
+</ul>
+<p></p><div class="alert alert-warning">Your final program should input the path to the<em> </em>FASTQ<em> </em>file and print the information about it (see the Examples section).</div><p></p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>contents of test_1.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR12345678.1
+GAGCCATATGACCACGCCGGAGAATCTCGCCAAGCAGGCAAAGCTGATGGAAGGCTACGGTGCGCCCTGTTTTTAT
++SRR12345678.1
+-@CCCGGGGFFGGCFGGGEEDFDFFGDFCEE,:@FDC8FE8,@FC8&lt;F&lt;,&lt;,8,CC8C,,C,:++8@C,:,6:C,9
+@SRR12345678.2
+GTCGATGGCCTGAACTACTCACGCTTCGAGAAGCAGATGCCTGCGCTGGCAGGTTTTGCTGAGCAAAATATTTCGT
++SRR12345678.2
+-ACCCGFFGGGFCFGGGGGGCGCFGEGD8C878EAFGGCEFFEF7CFC7@,@+CEFD,CF,,,:,,,,:,&lt;CCE,:
+@SRR12345678.3
+CGTCTGCGTCGAATCGACGCTACGCGACGGCTTTTTTCTGGAGTATTTCGGCGTGGTGCTTGAAGACGCAACTCT
++SRR12345678.3
+@ACCCFFFFGGGFFGF?E@@FEGEGDCFC7CCEGGCGEFE,,,C,CE@E,+@+@++:,6CE,,,,,:,4++899,
+@SRR12345678.4
+CGCAGAACCTGCACAGGAAAGCGACGAGCTGATCGTTAAAGATGCTAACGGCAATCTGCTGGCTGACGGCGACAG
++SRR12345678.4
+@@CCCGGGGGGGGGGGDF@CGGCEGDD&gt;FFC,EFDFGE@FA,C9CE99F@7B7+CCE,CF,,6C,,C,+8++8++
+@SRR12345678.5
+CTTTATGCCCCCACAGTGCGATCAGGAAGTACATCGGCACCAGCATCATTTCCCAGAAGAAGAAGAACATGAACAT
++SRR12345678.5
+CCCCCGFGGGGGDGDCFCFEDFEEDC?CDE9FAFGECF&gt;FF8,C,FE8CEEFFF,,,,,,,,,,,,,C,,,,,:,:
+@SRR12345678.6
+GTCGATGGCCTGAACTACTCACGCTTCGAGAAGCAGATGCCTGCGCTGGCAGGTTTTGCTGAGCAAAATATTTCGT
++SRR12345678.6
+-ACCCGFFGGGFCFGGGGGGGGCFGEGD8C878FAFGGCEFFEF7CFC7@,A+CEFD,CF,,,:,,,,:,&lt;CCD,:</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test_1.fastq
+Reads in the file = 6
+Reads sequence average length = 76
+
+Repeats = 1
+
+GC content average = 52.65%</code></pre>
+<p> <strong>Example 2:</strong> <em>contents of test_2.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR12345678.11 11 length=74
+TTACATCATCATCGGTCACTCTGAACGTCGTACTTACCACAAAGAATCTGACGACCTGATCGCGAAACAATTCG
++SRR12345678.11 11 length=74
+-8ACCGGGGGGGGGDFGGGGGGFFFGFGFDF?EGGGGCFGC,&lt;,&lt;,CCF,,C,,+8@,,;C,8+++++,,:CC,
+@SRR12345678.12 12 length=76
+CCCATCGGCACGCTTTCTGGTGGCAATCAGCAAAAAGTGGTGATCGGTCGTTGGGTCTATGCTGCCAGCCAGTTTT
++SRR12345678.12 12 length=76
+B@CCCGGGGGGGGGGGFFFFGFGGGGGFFFGG@8,FEFAFGC,EFGDGCC@C&lt;@+C@F,E&lt;@F9E&lt;,,66,,,&lt;C@
+@SRR12345678.13 13 length=74
+TCTGGAACAACTCGGCTTTACGCTGGCGAAGTTACCCGCAGGGTTAAATTCCAGCCCCCGTCCGTCTCCACTCC
++SRR12345678.13 13 length=74
+-AC9C9EFGGGFGC7ECCFFF7FE&gt;@F@++6CF&lt;CAEEE@+++;@&lt;9,&lt;,CC,,:C,,++88++,,:,,,:,6:
+@SRR12345678.14 14 length=74
+TTACATCATCATCGGTCACTCTGAACGTCGTACTTACCACAAAGAATCTGACGACCTGATCGCGAAACAATTCG
++SRR16506265.14 14 length=74
+-8ACCGGGGGGGGGDFGGGGGGFFFGFGFDF?EGGGGCFGC,&lt;,&lt;,CCF,,C,,+8@,,;C,8+++++,,:CC,
+@SRR12345678.15 15 length=76
+CGACAGGACCGGACGTGTACTGCTTAATCAGTTTGTTTCTGCCGCTGTTTCCGCGATGACTACCAATGTGGCACGT
++SRR12345678.15 15 length=76
+@CCCCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFECGGGGGGGEG7+8,,:E,CE,,C,C,,:,C,:
+@SRR12345678.16 16 length=74
+TTACATCATCATCGGTCACTCTGAACGTCGTACTTACCACAAAGAATCTGACGACCTGATCGCGAAACAATTCG
++SRR12345678.16 16 length=74
+-8ACCGGGGGGGGGDFGGGGGGFFFGFGFDF?EGGGGCFGC,&lt;,&lt;,CCF,,C,,+8@,,;C,8+++++,,:CC,</code></pre>
+<p> <em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test_2.fastq
+Reads in the file = 6
+Reads sequence average length = 75
+
+Repeats = 2
+
+GC content average = 49.75%</code></pre>

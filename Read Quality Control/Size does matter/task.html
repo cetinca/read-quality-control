@@ -1,0 +1,68 @@
+<h5 id="description">Description</h5>
+<p>Great! You now have a first impression of how reads are stored. The next parameter is the length. The longer a read sequence, the easier it is to assemble. Sequences can have different sizes depending on the sequencing type. Their length can vary even within the same file. You may have noticed that information about the length is sometimes present on the line with the sequence identifier. Nevertheless, it is always better to double-check this data. Now, let's create a read counter.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Take the input path to the FASTQ file with data;</li>
+<li>Calculate the number of reads* based on their length.<br/>
+	*Remember to delete the newline character before calculating the read length. </li>
+</ul>
+<p></p><div class="alert alert-warning">In your answer, indicate how many reads are found in a file and their individual length. Next, evaluate the average length for all file's reads. Round up the average length to the nearest whole number. For instance, if the average is <code class="java">65.4</code>, your answer should be <code class="java">65</code>.</div><p></p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>contents of test1.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR12345678.5
+ATGCAAGATTCCATTCTGACGACCGTAGTGAAAGATATCGACGGTGAAGTGACCACGCTTGCGAAGTTCTCCTGTT
++SRR12345678.5
+-ABC@EF&lt;FFFF9FFFGCAFF7FF7F,,B,,,,,,C,CE,,@++B,,,,&lt;,,&lt;@,:,7B,,,++++:&lt;C,&lt;C,,:,
+@SRR12345678.6
+ATATTGAAGGTGGCCTGGAGATGAAGTACGGCTCCTGGTTCGGCCTGATTTACGTCTCCGGCTGGCCCTTGCATT
++SRR12345678.6
+-A&lt;CCDC&lt;CCE98CFF8&lt;8&lt;8CC9&lt;&lt;C&lt;E,+@@CFF8,CFE++@@F,,CCE9C,,;,,,++88+,,9:,:,:,,,
+@SRR12345678.7
+GTATTGGCGCTGATTAACAAACGCAATAGATAATGTTTTACCGGAACTGCTCGGTTCATCAATGTTGTAGTTGTTT
++SRR12345678.7
+-A&lt;CCD@FCGG7+EE&lt;9E9&lt;,E7C7+C99,&lt;,,C,CFFFAEC,+++@C,@CC,+8@@,&lt;&lt;,,9,&lt;C,:,,&lt;C,,::
+@SRR12345678.8
+GTGCCGGACAGCCGCAGCATGAATCTGTCCAATGCGGTGTCGGTCGTTTTGTATTAATCCTTTCTTCTTTTTTTTT
++SRR12345678.8
+-8-ACF7+@:&lt;EF+@++@&lt;E,,,CEF,CF@,,&lt;,;++B+BC,+8,+8,,6,:,&lt;,,,,&lt;&lt;C,,:,,&lt;,,6&lt;,+++8
+@SRR12345678.9
+TCAGCATACTCGCCGCCTCTGCTGCGGAAATCCCCGGCAGCGTCGCTGGCATATACAACCAGTCTCCTTCATTTAT
++SRR12345678.9
+-8A-ACFCFGGCFE@FCCED8CF@D7++++;CCCD7+@++@+B@++8,+8,C,C,&lt;,,:,,,9:,&lt;?C6C,CC,,6
+@SRR12345678.10
+TCGTTACGAGAGTGTTCTCTGAACTCTATATGCGATTCATCTGCTGATCGCTCAATTACATGTCGAACTCTTTT
++SRR12345678.10
+-A&lt;CCFGEC@77C9FFFGGG,,,CEEF9E,&lt;,C,,CDC,CCC,&lt;C,,;,,866+,,&lt;,&lt;,,,&lt;,,,,;,6&lt;C,&lt;</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test1.fastq
+Reads in the file = 6:
+      with length 74 = 1
+      with length 75 = 1
+      with length 76 = 4
+
+Reads sequence average length = 76</code></pre>
+<p><strong>Example 2:</strong> <em>contents of test2.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR98765432.1071861 1071861
+CCCATAAAGATATACTGTTTTTTTTTCTTTCCCTCTTTTCTTCTTTTTCCTTCCCCCTTA
++SRR98765432.1071861 1071861
+-88-8,-,--;-&lt;,&lt;,,,,,,9++++;,;;;;;,;,,;,,,,&lt;;,,6,,;,;6,;,8+,,
+@SRR98765432.1071862 1071862
+CGCTATGACCATTTCGCCCTCCTCTTCGGCAACCTTTCCATCCCTTCCCTCTCACAATATT
++SRR98765432.1071862 1071862
+8-8-,8-,;C,;C,-,8,8+;,;C&lt;,;,,+++,,;6,;,,,,,;;C,;;,,;;,;,,;,&lt;,
+@SRR98765432.1071863 1071863
+CTTCATCGCTGCCCGTTTCTTGTTCCAGAAACTTTTTCCACGGTTATCCCCTCACCATAA
++SRR98765432.1071863 1071863
+AACC,CC,BC,@@C-+;;CCC,;C@C,,,,,;C,,&lt;;,;,;,+,,,;;;;,,8,;;,;,,
+@SRR98765432.1071864 1071864
+CTTTTCTGCCTTCACGTTCCATCCTTCTCCGTCTTTCTTTCCGTTCCCCTCTCCTTACTT
++SRR98765432.1071864 1071864
+-8,-8C-,&lt;;E-;,;,,;;;,,;;6CC,;C+:,,,&lt;;,,,&lt;;,,,;;,,,,,;;,;,;&lt;C</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test2.fastq
+Reads in the file = 4:
+      with length 60 = 3
+      with length 61 = 1
+
+Reads sequence average length = 60</code></pre>

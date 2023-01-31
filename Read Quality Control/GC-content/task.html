@@ -1,0 +1,65 @@
+<h5 id="description">Description</h5>
+<p>The next notion we're going to discuss in this project is the <strong>GC-content</strong>. You know that a DNA sequence is formed by adenine (A), thymine (T), cytosine (C), and guanine (G) nucleotides. In a FASTQ file, you see only one DNA strand. However, in nature, any DNA is <strong>double-stranded</strong>. There are two bonds between A and T and three bonds between C and G (see figure). Depending on the number of G and C nucleotides, DNA may have different properties. That's the reason why the GC-content is necessary to evaluate.</p>
+<p>The evaluation of GC-content can be useful in:</p>
+<ul>
+<li>Bacterial classification during the separation of a high-level bacterial group;</li>
+<li>Laboratory experiments if you work with the so-called wet DNA to properly plan your experiment;</li>
+<li>Genome assembly when you intend to assemble a genome "puzzle" with the highest quality.</li>
+</ul>
+<p><img alt="" height="117" name="Безымянный6.png" src="https://ucarecdn.com/f6704b30-533a-41ac-ace0-32005da0b045/" width="321"/></p>
+<p>To guess the quality of your data or to advise your colleagues on how to plan an experiment, you need to calculate the GC-content. Usually, this parameter is measured as a percentage (GC%). As the name of this parameter implies, the GC-content can be counted as follows:</p>
+<p><span class="math-tex">\[{\#G + \#C \over \#A +\#T+\#G+\#C} \: \cdot100\%\]</span><span class="math-tex">\(\#\)</span> denotes the number of elements. For instance, <span class="math-tex">\(\#C\)</span> is the number of C nucleotides in a sequence. If you encounter unknown nucleotides (N) in the sequence, add them to the denominator.</p>
+<p>To measure the total GC content:</p>
+<ul>
+<li>Calculate average GC for every read and round to two decimal,</li>
+<li>Then count mean for all average rounded values.</li>
+</ul>
+<p>Let's see an example to make it all clear. If you have the following DNA: <code class="java">AATGCTNGCG</code>, then the GC-content value will be:<span class="math-tex">\[{5 \over 10} \cdot 100\% = 50\%.\]</span></p>
+<p>According to the <a href="https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content" rel="noopener noreferrer nofollow" target="_blank">Targeted Hybrid Capture for Inherited Disease Panels</a> study by Sami S. Amr and Birgit Funke, the optimal GC-content level for a genome assembly lies in a range from 50 to 60% if we talk about bioinformatics applications.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Take the input path to the FASTQ file with data;</li>
+<li>Calculate the mean value of the GC-content for all reads in the FASTQ file.</li>
+</ul>
+<p>It is guaranteed that the file contains only four-line reads.</p>
+<p></p><div class="alert alert-warning">Round the GC-content value to two decimal places. Don't forget to separate an average length from the GC-content mean by a newline character.</div><p></p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>contents of test1.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR12345678.1 1 length=75
+GCACACAACCGTGATGCTGAGCTGGCGTCGGTGGTATCAAATATGTCCAGCGAGCCGCACGTTACCCCTCCACTT
++SRR12345678.1 1 length=75
+-ABCCGGFGGGGG9FFFEACFFGC&lt;FEBC++8,+C9FG9&lt;,C,CEFEFC,C@++8:+++8+C@,89C@,8,,,99
+@SRR12345678.2 2 length=76
+CACTGACTGGGATTTTTTGCAGCGAGTTTGCCAGCAGGTGGGATTTTCACCGGTTGTTATTCGCGAAGTTAATGAA
++SRR12345678.2 2 length=76
+@BCCCGGGGGGGGGGGGGGGGGGGDGFGGCFG9EFCFDGG?7,CFFFFCFF7+@C+BC,CCC,:++++:C,,&lt;,,,</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test1.fastq
+Reads in the file = 2
+Reads sequence average length = 76
+
+GC content average = 51.69%</code></pre>
+<p><strong>Example 2:</strong> <em>contents of test2.fastq</em></p>
+<pre><code class="language-no-highlight">@SRR98765432.1 1 length=71
+CGGTAATAGTCACGGTGCTCATGCTTGCTCCTTAAGGGCGTTAACACGCAAAGTAACGGCATTTTTGTGGT
++SRR98765432.1 1 length=71
+ACCCCGGGGGGGGFGGGGGGGGGGGGGGGGGGGCAEFDFEEFDFFFF7B:+@8F9,C,+8+@EFFF+C,,,
+@SRR98765432.2 2 length=76
+GTTTCCCGCTTCGTGCACTGAAATTTTATGATAACGATGGTGCGCGGCAGGAAGTGATTTCCGAAGCCTTTAAATT
++SRR98765432.2 2 length=76
+-ACCCGGGGEGGGGFGGFGFCCDFFGGGGF,C@EF@7FDDE,C+@+::++6,,,:,,&lt;&lt;,&lt;6,,,+86C,:,,,,6
+@SRR98765432.3 3 length=53
+GTGGATGACGGCCCATAACATCGCCTTCGTCGTGGTCAATATCAATATTAACT
++SRR98765432.3 3 length=53
+-CCCCGGGGGGGGGGGGGGGGGGGGGGGGGGGGDGGFCFFAFFC,F9EF9&lt;EE
+@SRR98765432.4 4 length=75
+TGGCAGAACAGCTTGATCAGATGGGCGGCGAGCAGCTGCGTCGCAAAATCGAAAGTATTTGCTTGCGCTTTCACA
++SRR98765432.4 4 length=75
+@@CCCGGGGGFGGGGFFFGCFGGFCFCDF7@+@FAEFCF+BF@C:C7CFE7,,,+C,C,,,&lt;,C,:+7+?D&lt;,C,</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test2.fastq
+Reads in the file = 4
+Reads sequence average length = 69
+
+GC content average = 47.48%</code></pre>

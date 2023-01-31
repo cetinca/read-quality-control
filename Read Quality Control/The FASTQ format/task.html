@@ -1,0 +1,29 @@
+<h5 id="description">Description</h5>
+<p>We see the enthusiasm in your eyes. Let's get started to dig into bioinformatics data!</p>
+<p>Bioinformaticians obtain the data from a device called the <strong>sequencer</strong>. A sequencer is a magic machine that can transform genetic material into text. For instance, you can transform your DNA into a set of letters — <strong>A</strong>, <strong>T</strong>, <strong>C</strong>, and <strong>G</strong>. In this project, we will work with bacterial DNA data sequencing.</p>
+<p>The first data type you need to deal with is lightly-processed sequencing data from the <a href="https://www.youtube.com/watch?v=fCd6B5HRaZ8&amp;ab_channel=Illumina" rel="noopener noreferrer nofollow" target="_blank">Illumina</a> sequencer. Such data is stored in text files of the FASTQ format.</p>
+<p>A FASTQ<em> </em>file includes four-line parts and looks like a huge text file. To get things straight, let's take a look at one four-line part of a FASTQ file. This part is called a <strong>read:</strong></p>
+<p><img alt="" height="85" name="Безымянный5.png" src="https://ucarecdn.com/66a4939f-0a55-4ed8-a3d4-9997b8fd8dd6/" width="852"/></p>
+<p>The first line collects information about the instrument ID, run number, flowcell ID, lane, tile, x-pos (the X-coordinate of a cluster), y-pos, UMI, read number, filtering status, control number, and index of the read. The second line is the sequence constructed from <strong>nucleotides </strong>(letters <code class="java">A</code>, <code class="java">T</code>, <code class="java">C</code>, and <code class="java">G</code>). The third line starts with a <code class="java">+</code> presenting the same data as the first line or can store additional information about the read. Finally, the last line shows information about the quality of each nucleotide<strong> </strong>in a special format. If you feel curious, <a href="https://en.wikipedia.org/wiki/FASTQ_format" rel="noopener noreferrer nofollow" target="_blank">this Wikipedia article</a> can help you delve deeper.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Take the input path to the FASTQ file with data;</li>
+<li>Open the file and print all the information relevant only to<strong> </strong>the<strong> </strong>first read<strong> </strong>(see the Example section for the output format).</li>
+</ul>
+<h5 id="example">Example</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>contents of the test.fastq file</em></p>
+<pre><code class="language-no-highlight">@SRR16506265.1071862 1071862 length=76
+CGCTGGGTCTGTCGCTGGTCACCCTGTTGTTTATGACTACCGCCCTGCTGGGCTGGTACTACGTTTTGCCGTTCGT
++SRR16506265.1071862 1071862 length=76
+C9CCC&gt;CGEG9ECEDFGGEFCD@8FGFGGGCGEEGFFGFFCFGGGGGFFGGGCDGGDG9F998FF@EECF@C:FGF
+@SRR16506265.1071863 1071863 length=76
+GTGTGGGCCAGCGTCATATCAACCTGTGACGCCCCCAAATCACCAAAACGGAATACACGCACTGGCTGCCAGCGTT
++SRR16506265.1071863 1071863 length=76
+CCCC@--CF;-@:FC@EAFFFGGGGGGGGGGGEEFGGGGGGGGFGGGGGGEGGFGGGGGGGGGFGGGGGGGGFGFD</code></pre>
+<p><em>Program output</em></p>
+<pre><code class="language-no-highlight">&gt; test.fastq
+@SRR16506265.1071862 1071862 length=76
+CGCTGGGTCTGTCGCTGGTCACCCTGTTGTTTATGACTACCGCCCTGCTGGGCTGGTACTACGTTTTGCCGTTCGT
++SRR16506265.1071862 1071862 length=76
+C9CCC&gt;CGEG9ECEDFGGEFCD@8FGFGGGCGEEGFFGFFCFGGGGGFFGGGCDGGDG9F998FF@EECF@C:FGF</code></pre>
